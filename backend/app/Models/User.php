@@ -19,6 +19,8 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'login_code',
         'password',
     ];
 
@@ -30,6 +32,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'login_code'
     ];
 
     /**
@@ -43,6 +46,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function routeNotificationForTwilio()
+    {
+        return $this->phone;
     }
 
     public function driver()
